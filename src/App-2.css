@@ -1,0 +1,36 @@
+.chart {
+  justify-content: center;
+  position: relative;
+  display: flex;
+  padding-top: 5rem;
+  padding-left: 10rem;
+}
+
+.title {
+  display: flex;
+  position: absolute;
+  padding-left: 14rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.student-info {
+  display: flex;
+  position: relative;
+  padding-left: 14rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+:root {
+  background-color: cornflowerblue;
+}
+
+.sidebar {
+  display: flex;
+  position: absolute;
+  margin-top: -1.1rem;
+  margin-left: -1.1rem;
+  background-color: aquamarine;
+  border-radius: 10px;
+  height: 100%;
+  width: 10%;
+}
