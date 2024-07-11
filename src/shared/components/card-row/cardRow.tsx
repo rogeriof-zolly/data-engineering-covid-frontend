@@ -14,12 +14,12 @@ type CardRowProps = {
 export const CardRow = ({title, values}: CardRowProps) => {
     return (
         <Grid container direction={"row"} xs={12}>
-            <Grid container item xs={12} marginLeft={10}>
+            <Grid container item xs={12} marginLeft={6}>
                 <Typography variant='h4' color="#fff">{title}</Typography>
             </Grid>
 
             {values.map((item) => (
-                <Grid container item xs={4} justifyContent={"center"}>
+                <Grid container item xs justifyContent={"center"}>
                     <Card title={item.title} value={item.value} />
                 </Grid>
             ))}

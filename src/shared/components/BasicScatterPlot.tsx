@@ -6,41 +6,49 @@ interface IData {
   PCA1: number;
   PCA2: number;
 }
-const fetcher = (url: string) => fetch("http://localhost:3000" + url, {
-  headers: {
-    "Access-Control-Allow-Origin": "*"
-  }
-}).then(res => res.json())
+const fetcher = (url: string) =>
+  fetch("http://localhost:3000" + url, {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  }).then((res) => res.json());
+
+const lineChartsParams = (data: any) => ({
+  series: [
+    {
+      label: "Cluster 0",
+      data: data.data
+        .filter((v: IData) => v.Cluster === 0)
+        .map((v: IData) => ({ x: v.PCA1, y: v.PCA2, id: v.Cluster })),
+    },
+    {
+      label: "Cluster 1",
+      data: data.data
+        .filter((v: IData) => v.Cluster === 1)
+        .map((v: IData) => ({ x: v.PCA1, y: v.PCA2, id: v.Cluster })),
+    },
+    {
+      label: "Cluster 2",
+      data: data.data
+        .filter((v: IData) => v.Cluster === 2)
+        .map((v: IData) => ({ x: v.PCA1, y: v.PCA2, id: v.Cluster })),
+    },
+  ],
+  width: 600,
+  height: 400,
+});
 
 const BasicScatterPlot = () => {
   const data = useSWR("/clusters", fetcher);
 
   return (
-    (!data.isLoading) &&
-    <ScatterChart
-      width={600}
-      height={300}
-      series={[
-        {
-          label: "Cluster 0",
-          data: data.data
-            .filter((v: IData) => v.Cluster === 0)
-            .map((v: IData) => ({ x: v.PCA1, y: v.PCA2, id: v.Cluster })),
-        },
-        {
-          label: "Cluster 1",
-          data: data.data
-            .filter((v: IData) => v.Cluster === 1)
-            .map((v: IData) => ({ x: v.PCA1, y: v.PCA2, id: v.Cluster })),
-        },
-        {
-          label: "Cluster 2",
-          data: data.data
-            .filter((v: IData) => v.Cluster === 2)
-            .map((v: IData) => ({ x: v.PCA1, y: v.PCA2, id: v.Cluster })),
-        },
-      ]}
-    ></ScatterChart>
+    !data.isLoading && (
+      <ScatterChart
+        width={600}
+        height={300}
+        series={lineChartsParams(data).series}
+      />
+    )
   );
 };
 

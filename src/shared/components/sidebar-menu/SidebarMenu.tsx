@@ -69,7 +69,7 @@ const SidebarMenu: React.FC<SidebarProps> = ({ children }) => {
           </Box>
         </Box>
       </Drawer>
-      <Box height="100vh" marginLeft={smDown ? 0 : theme.spacing(28)}>
+      <Box paddingBottom={10} paddingTop={10} marginLeft={smDown ? 0 : theme.spacing(28)}>
         {children}
       </Box>
     </>
